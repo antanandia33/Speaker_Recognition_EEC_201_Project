@@ -2,7 +2,7 @@
 ## Executing the program
 1) Download "Speech Recognition Project.ipynb" from the Github respository.
 2) Upload the file to a Google Drive and open it in Google Colab
-3) Click Runtime>Disconnect and delete runtime>Yes if it is available
+3) Click Runtime>Disconnect and delete runtime>Yes
 4) Click Runtime>Run all to run the program
 
 ## Accuracy Results
