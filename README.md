@@ -13,10 +13,16 @@ Testing Data Accuracy: 75%
 
 #### **Non speaker with teammates' recordings of "zero"**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 77.77%
+Testing Data Accuracy: 70%
 
 ### **Test 8**
 #### **Notch filter blocking 60 Hz applied to Test 7**
+Testing Data Accuracy: 75%
+
+#### **Notch filter blocking 200 Hz applied to Test 7**
+Testing Data Accuracy: 62.5%
+
+#### **Notch filter blocking 400 Hz applied to Test 7**
 Testing Data Accuracy: 75%
 
 ### **Test 9**
