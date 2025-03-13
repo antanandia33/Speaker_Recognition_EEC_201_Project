@@ -34,6 +34,53 @@ As a human, picking up these vocal differences during the first pass is difficul
 ## Speech Processing
 
 ## Vector Quantization
+Now that we have the mfccs that represent the features for each speaker, the 
+next step is to apply feature matching to identify the speakers. In this
+project, we applied Vector Quantization, which is a simple process of mapping
+regions in a vector space to specific centroids. Each region is called a cluster
+and each cluster's center is a centroid, also known as a codeword. The
+collection of codewords for each speaker is the codebook for the speaker. These
+codebooks are then used to identify if a test speaker's mfcc is close a speaker's
+codebook to identify the speaker.
+
+First, to verify that the mfcc vectors for a speaker display various clusters that
+represent different vocal features, we plotted the mfcc vectors in the 5th and 
+6th dimensions for speakers 1 and 2. In Figure B1, we noticed that even by only
+plotting 2 dimensions of the mfcc vector, both speaker 1 and speaker 2 had
+different clusters in the mfcc vector space. This confirms that the vector
+quantization method would work because we would able to identify different
+centroids for each cluster.
+
+|  ![Figure B1: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav](./Report_Images/test5.png) |
+|:--:| 
+| *Figure B1: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav* |
+
+The next step in vector quantization would be to identify the centroids for 
+each cluster. This was done by applying the Linde, Buzo and Gray (LBG)
+algorithm to the mfcc vectors. This algorithm is a recursive algorithm that teaches
+the clustering of a set of L training vectors into a set of M codewords. The
+algorithm is shown in Figure B2. The two hyperparamters that we can tune are 
+M - the number of codewords, and epsilon e - the splitting parameter. After, 
+running the LBG algorithm on the same speakers - speaker 1 and speaker 2 with 16 
+centroids, in Figure B3 we can see that the algorithm successfully plots 16 
+centroids for each speaker that correctly maps out the speaker's clusters.
+
+|  ![LBG Algorithm](./Report_Images/LBG.png) |
+|:--:| 
+| *Figure B2: LBG Algorithm* |
+
+|  ![Centroids](./Report_Images/centroids.png) |
+|:--:| 
+| *Figure B3: Centroids on s1.wav and s2.wav vector space in the 5th and 6th mfcc dimenstions* |
+
+After creating a codebook for each speaker in the training set using the LBG
+algorithm, the next step is to identify the speakers in the test set. This is done
+by first finding the mfccs for the test speaker, then for each test speaker, 
+go through all the codebooks and calculate the average distance between the test 
+speaker's mfccs and the codebook's centroids. The codebook that has the smallest
+average distance between the mfcc vectors and the codebook's centroids is the best 
+match. This is because the clusters would closely match the trained speaker's mfcc
+clusters, therefore, their features would match.
 
 ## Test Results
 ### **Test 7**
