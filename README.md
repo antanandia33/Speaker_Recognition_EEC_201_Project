@@ -86,11 +86,25 @@ clusters, therefore, their features would match.
 ### **Test 7**
 #### **Non speaker recordings of "zero"**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 75%
+Testing Data Accuracy: 87.5%
 
 #### **Non speaker with teammates' recordings of "zero"**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 70%
+Testing Data Accuracy: 80%
+
+With an accuracy of 87.5% in the speakers without the teammate's recordings,
+our model performs drastically better than our human benchmark. Our model only
+misidentifies speaker 3 as speaker 5. When listening back at the 2 sound files,
+the voices don't sound similar, but the way they emphasize the 'z' and 'o'
+is similar. So it's understandable how the model could have mixed those 2 sound
+files since they would share a similar feature set.
+
+For the second part of test 7 with the inclusion of the teammate's recordings,
+it again misidentifies speaker 3 as speaker 5, but it also misidentifies speaker
+8 as speaker Anthony. The decrease in accuracy makes sense because it got the same
+speaker wrong, plus one more. With these tests we have identified that the model
+specifically has trouble with identifying speaker 3 correctly.
+
 
 ### **Test 8**
 #### **Notch filter blocking 60 Hz applied to Test 7**
@@ -102,28 +116,41 @@ Testing Data Accuracy: 62.5%
 #### **Notch filter blocking 400 Hz applied to Test 7**
 Testing Data Accuracy: 75%
 
+To test the robustness of our model we added notch filters at 3 different places,
+60Hz, 200Hz, and 400Hz. We chose these frequencies based on the fact that
+the average frequency spoken by an adult man ranges from 80Hz-180Hz while for women
+the average frequency ranges from 165Hz-255Hz. We noticed that the 60Hz and 400Hz
+notches, which are outside of that range, give 75%. Both predicting speakers 3 
+and 8 wrong, which is consistent with our results in test 7. However, when 
+applying the 200Hz notch filter, which is in the vocal ranges, the accuracy 
+decreases, predicting speakers 3 and 8 as well as speaker 1 wrong. This makes 
+sense because removing a frequency used in everyday speech should make it hard 
+for the model to identify speakers. However, our model does pretty well still 
+considering that it consistently gets speakers 3 and 8 wrong while the rest can 
+be identified accurately except for speaker 1.
+
 ### **Test 9**
 #### **Original Speakers + 10 random Students with speech "zero"**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 72.22%
+Testing Data Accuracy: 83.33%
 
 ### **Test 10a: Zero/Twelve system**
 #### **Train and test with zero**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 72.22%
+Testing Data Accuracy: 77.77%
 
 #### **Train and test with twelve**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 66.67%
+Testing Data Accuracy: 72.22%
 
 #### **Train and test with zero/twelve**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 69.44%
+Testing Data Accuracy: 75%
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 91.3%
+Testing Data Accuracy: 100%
 
 #### **Train and test with eleven**
 Training Data Accuracy: 100%
@@ -131,4 +158,4 @@ Testing Data Accuracy: 86.96%
 
 #### **Train and test with five/eleven**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 89.13%
+Testing Data Accuracy: 93.48%
