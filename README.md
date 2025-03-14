@@ -20,7 +20,7 @@ patterns. We apply the LGB algorithm to create centroids from various clusters
 in the vector space. These centroids create a collection of codewords in a codebook
 which we can use to identify the speaker. To test our model we initially used 11
 audio files of different people saying the word "zero". In training, we achieved
-an accuracy of 100% and in testing, we achieved an accuracy of 75%. We then went
+an accuracy of 100% and in testing, we achieved an accuracy of 87.5%. We then went
 on to test other features, such as the model's robustness to missing frequencies,
 how it handled more speakers, and how it handled more words. 
 
@@ -124,7 +124,7 @@ notches, which are outside of that range, give 75%. Both predicting speakers 3
 and 8 wrong, which is consistent with our results in test 7. However, when 
 applying the 200Hz notch filter, which is in the vocal ranges, the accuracy 
 decreases, predicting speakers 3 and 8 as well as speaker 1 wrong. This makes 
-sense because removing a frequency used in everyday speech should make it hard 
+sense because removing a frequency used in everyday speech should make it harder 
 for the model to identify speakers. However, our model does pretty well still 
 considering that it consistently gets speakers 3 and 8 wrong while the rest can 
 be identified accurately except for speaker 1.
