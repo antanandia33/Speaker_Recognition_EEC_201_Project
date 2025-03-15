@@ -197,13 +197,25 @@ Testing Data Accuracy: 94.44%
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
-#### **Train and test with zero/twelve**
+#### **Train and test with both zero and twelve**
 Training Data Accuracy: 100%
 Testing Data Accuracy: 88.88%
 
 Compared to the test with student speakers who only said "twelve", the "zero" test
-was more accurate due to 
+was more accurate due to the word having a longer duration and higher energy that make
+features easier to distinguish. "zero" has two syllables. This makes it more likely to 
+have more samples for feature extraction compared to "twelve". Vowel sounds have 
+higher energy compared to other voiced sounds. "zero" not only has two vowel sounds, but
+it also uses two long vowels in "e" and "o" compared to the short vowel of "e" in "twelve".
+"twelve" having the weaker voiced sound of "v" and unvoiced sound in "t" makes it less
+accurate than "zero".
 
+Training and testing a dataset with both "zero" and "twelve" resulted in an accuracy
+between the two individual tests because the lower "twelve" accuracy brought the 
+overall accuracy down. The algorithm only made one mistake in recognizing a "twelve"
+as "zero" due to how distinct the word sounds differ. Again, "twelve" seemed to be
+the more difficult word to recognize, as all the "zero" speeches were recognized
+correctly in this test. 
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
@@ -214,6 +226,19 @@ Testing Data Accuracy: 100%
 Training Data Accuracy: 100%
 Testing Data Accuracy: 91.34%
 
-#### **Train and test with five/eleven**
+#### **Train and test with both five and eleven**
 Training Data Accuracy: 100%
 Testing Data Accuracy: 93.48%
+
+Even though "eleven" has a longer duration, "five" had a higher accuracy, since its long
+'i' voiced sound has more energy than the the three short 'e' sounds from "eleven". 
+"five" ended up being more accurate than "zero", since it was easier to distinguish 
+features with 'i'. 
+
+For the test with both "five" and "eleven", the difference in energy of the sounds
+allowed the program to guess the correct word in each case. Most of the mistakes were
+made when guessing which speaker was saying "eleven". The additioni of the "eleven"
+dataset brought the accuracy down from the "five" test. 
+
+## Conclusion
+
