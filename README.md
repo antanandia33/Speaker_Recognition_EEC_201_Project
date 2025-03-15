@@ -12,9 +12,9 @@ Team Job Hunters: Nathan Lai and Anthony Tan-Andia
 The goal of this project is to create a signal processing model that successfully
 identifies speakers using the mel-frequency cepstrum coefficients and vector
 quantization. The model is trained on various human voices. These voices are then
-treated as signals that are processed and framed using a hamming window. The STFT of
-each frame is calculated, and we apply mel-frequency wrapping. From this, we can
-caculate the mel-frequency cepstrum coefficients (MFCC) for each frame.
+treated as signals that are processed and framed using a hamming window. The Short
+Time Fourier Transform (STFT) of each frame is calculated, and we apply mel-frequency
+wrapping. From this, we can caculate the mel-frequency cepstrum coefficients (MFCC) for each frame.
 These coefficients are then treated as vectors that can be quantized to recognize
 patterns. We apply the LBG algorithm to create centroids from various clusters
 in the vector space. These centroids create a collection of codewords in a codebook
@@ -51,7 +51,33 @@ The Windowing step is needed to reduce spectral leakage at the ends of each fram
 from the sampled signal being periodic. We used a Hamming window to taper the signal to zero
 at these frame edges.
 
+A STFT, which is an N-point Fast Fourier Transform (FFT), is done after windowing in order to 
+convert the signal to frequency domain for Mel-frequency wrapping. An N value of 512 was chosen
+in this case. The spectrograms after the STFT in different cases of people saying "zero" are shown
+in Figure A2 along with the time domain waveform of the signals. 
 
+|  ![Figure A2: Spectrograms and Waveforms of the "zero" signals](./Report_Images/test2.png) |
+|:--:| 
+| *Figure A2: Spectrograms and Waveforms of the "zero" signals* |
+
+In Mel-frequency wrapping, several triangular filters are applied to the STFT of the 
+signal to create filter banks that emphasize/attenuate certain frequencies and map linear frequency
+bins to the mel-frequency scale. The frequency response of the filter bank is shown in Figure A3.
+Figure A4 also shows how the filter banks affected the spectrogram of the signals' STFTs.
+
+|  ![Figure A3: Filter bank for Mel-frequency scale](./Report_Images/filter_bank.png) |
+|:--:| 
+| *Figure A3: Filter bank for Mel-frequency scale* |
+
+|  ![Figure A4: Signal spectrograms before and after frequency wrapping](./Report_Images/test3.png) |
+|:--:| 
+| *Figure A4: Signal spectrograms before and after frequency wrapping* |
+
+For the Cepstrum step, the MFCCs are calculated after the filter banks by applying
+Discrete Cosine Transform (DCT) to get a compressed representation of the filter banks.
+This converts the mel spectrum coefficients to time domains and results in the MFCCs. 
+Sinusoidal liftering was done after this to improve the speech recognition with noisy 
+signals by de-emphasizing higher MFCCs. 
 
 ## Vector Quantization
 Now that we have the mfccs that represent the features for each speaker, the 
