@@ -14,7 +14,7 @@ identifies speakers using the mel-frequency cepstrum coefficients and vector
 quantization. The model is trained on various human voices. These voices are then
 treated as signals that are processed and framed using a hamming window. The STFT of
 each frame is calculated, and we apply mel-frequency wrapping. From this, we can
-caculate the mel-frequency cepstrum coefficients (mfcc) for each frame.
+caculate the mel-frequency cepstrum coefficients (MFCC) for each frame.
 These coefficients are then treated as vectors that can be quantized to recognize
 patterns. We apply the LBG algorithm to create centroids from various clusters
 in the vector space. These centroids create a collection of codewords in a codebook
@@ -31,7 +31,26 @@ was pretty low as we had trouble remembering what each person sounded like. Some
 people sounded very similar to each other while others sounded vastly different.
 As a human, picking up these vocal differences during the first pass is difficult.
 
-## Speech Processing
+## Speech Preprocessing
+MFCCs represent human hearing being more sensitive to lower frequencies, which allows
+speech characteristics to be easier to recognize. These are represented in the mel-frequency
+scale that is linearly spaced below 1000 Hz and logarithmicly spaced above 1000 Hz. 
+The process for computing the MFCCs is shown in Figure A1. 
+
+|  ![Figure A1: MFCC Process Block Diagram](./Report_Images/Speech_Preprocessing.png) |
+|:--:| 
+| *Figure A1: MFCC Process Block Diagram* |
+
+The purpose of the Frame Blocking step is to divide the signal into smaller, overlapping frames
+that approximate the frequency spectrum shape of the signal. This is necessary because
+signal frequencies change over time, but are stationary in short time periods that we represent
+with frames. The overlapping frames is for analyzing these stationary frequency segments. 
+We chose a frame size of 256 samples for 20.48 milliseconds and 67% overlap for this project.
+
+The Windowing step is needed to reduce spectral leakage at the ends of each frame that comes
+from the sampled signal being periodic. We used a Hamming window to taper the signal to zero
+at these frame edges.
+
 
 
 ## Vector Quantization
