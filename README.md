@@ -16,7 +16,7 @@ treated as signals that are processed and framed using a hamming window. The STF
 each frame is calculated, and we apply mel-frequency wrapping. From this, we can
 caculate the mel-frequency cepstrum coefficients (mfcc) for each frame.
 These coefficients are then treated as vectors that can be quantized to recognize
-patterns. We apply the LGB algorithm to create centroids from various clusters
+patterns. We apply the LBG algorithm to create centroids from various clusters
 in the vector space. These centroids create a collection of codewords in a codebook
 which we can use to identify the speaker. To test our model we initially used 11
 audio files of different people saying the word "zero". In training, we achieved
@@ -32,6 +32,7 @@ people sounded very similar to each other while others sounded vastly different.
 As a human, picking up these vocal differences during the first pass is difficult.
 
 ## Speech Processing
+
 
 ## Vector Quantization
 Now that we have the mfccs that represent the features for each speaker, the 
@@ -137,15 +138,15 @@ Testing Data Accuracy: 83.33%
 ### **Test 10a: Zero/Twelve system**
 #### **Train and test with zero**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 77.77%
+Testing Data Accuracy: 94.44%
 
 #### **Train and test with twelve**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 72.22%
+Testing Data Accuracy: 83.33%
 
 #### **Train and test with zero/twelve**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 75%
+Testing Data Accuracy: 88.88%
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
@@ -154,7 +155,7 @@ Testing Data Accuracy: 100%
 
 #### **Train and test with eleven**
 Training Data Accuracy: 100%
-Testing Data Accuracy: 86.96%
+Testing Data Accuracy: 91.34%
 
 #### **Train and test with five/eleven**
 Training Data Accuracy: 100%
