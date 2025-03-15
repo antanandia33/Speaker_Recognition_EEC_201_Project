@@ -130,11 +130,11 @@ clusters, therefore, their features would match.
 
 ## Test Results
 ### **Test 7**
-#### **Non speaker recordings of "zero"**
+#### **Non student speaker recordings of "zero"**
 Training Data Accuracy: 100%
 Testing Data Accuracy: 87.5%
 
-#### **Non speaker with teammates' recordings of "zero"**
+#### **Non student speaker with teammates' recordings of "zero"**
 Training Data Accuracy: 100%
 Testing Data Accuracy: 80%
 
@@ -150,7 +150,6 @@ it again misidentifies speaker 3 as speaker 5, but it also misidentifies speaker
 8 as speaker Anthony. The decrease in accuracy makes sense because it got the same
 speaker wrong, plus one more. With these tests we have identified that the model
 specifically has trouble with identifying speaker 3 correctly.
-
 
 ### **Test 8**
 #### **Notch filter blocking 60 Hz applied to Test 7**
@@ -180,6 +179,15 @@ be identified accurately except for speaker 1.
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
+The results from combining the non student and 10 random student recordings saying
+"zero" are consistent with Test 7 in which speaker 3 was mistaken to be speaker 5,
+and speaker 8 was mistaken to be one of the newly added speakers. But, it also
+confused student speaker 14 to be student speaker 13, who pronounced the voiced 'z'
+and 'o' sounds more similarly than the others. The accuracy is lower than Test 7
+without the student speakers, since there are more speakers that can confuse the program. 
+The accuracy was higher than the inclusion of the teammate speakers, since it got
+the same speakers incorrect and had larger dataset to guess correctly. 
+
 ### **Test 10a: Zero/Twelve system**
 #### **Train and test with zero**
 Training Data Accuracy: 100%
@@ -192,6 +200,10 @@ Testing Data Accuracy: 83.33%
 #### **Train and test with zero/twelve**
 Training Data Accuracy: 100%
 Testing Data Accuracy: 88.88%
+
+Compared to the test with student speakers who only said "twelve", the "zero" test
+was more accurate due to 
+
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
