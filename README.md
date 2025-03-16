@@ -145,12 +145,12 @@ voices.
 
 ### **Test 7**
 #### **Non student speaker recordings of "zero"**
-Training Parameters: M = 16, e = 0.05
+Training Parameters: M = 16, e = 0.05  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 87.5%
 
 #### **Non student speaker with teammates' recordings of "zero"**
-Training Parameters: M = 16, e = 0.153
+Training Parameters: M = 16, e = 0.153  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 80%
 
@@ -169,15 +169,15 @@ specifically has trouble with identifying speaker 3 correctly.
 
 ### **Test 8**
 #### **Notch filter blocking 60 Hz applied to Test 7**
-Training Parameters: M = 16, e = 0.05
+Training Parameters: M = 16, e = 0.05  
 Testing Data Accuracy: 75%
 
 #### **Notch filter blocking 200 Hz applied to Test 7**
-Training Parameters: M = 16, e = 0.05
+Training Parameters: M = 16, e = 0.05  
 Testing Data Accuracy: 62.5%
 
 #### **Notch filter blocking 400 Hz applied to Test 7**
-Training Parameters: M = 16, e = 0.05
+Training Parameters: M = 16, e = 0.05  
 Testing Data Accuracy: 75%
 
 To test the robustness of our model we added notch filters at 3 different places,
@@ -195,7 +195,7 @@ be identified accurately except for speaker 1.
 
 ### **Test 9**
 #### **Original Speakers + 10 random Students with speech "zero"**
-Training Parameters: M = 16, e = 0.05
+Training Parameters: M = 16, e = 0.05  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
@@ -210,17 +210,17 @@ the same speakers incorrect and had larger dataset to guess correctly.
 
 ### **Test 10a: Zero/Twelve system**
 #### **Train and test with zero**
-Training Parameters: M = 64, e = 0.07
+Training Parameters: M = 64, e = 0.07  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 94.44%
 
 #### **Train and test with twelve**
-Training Parameters: M = 64, e = 0.07
+Training Parameters: M = 64, e = 0.07  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
 #### **Train and test with both zero and twelve**
-Training Parameters: M = 64, e = 1
+Training Parameters: M = 64, e = 1  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 88.88%
 
@@ -242,17 +242,17 @@ correctly in this test.
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
-Training Parameters: M = 16, e = 0.1
+Training Parameters: M = 16, e = 0.1  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 100%
 
 #### **Train and test with eleven**
-Training Parameters: M = 32, e = 0.1
+Training Parameters: M = 32, e = 0.1  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 91.34%
 
 #### **Train and test with both five and eleven**
-Training Parameters: M = 16, e = 0.1
+Training Parameters: M = 16, e = 0.1  
 Training Data Accuracy: 100%
 Testing Data Accuracy: 93.48%
 
