@@ -93,14 +93,14 @@ project, we applied Vector Quantization, which is a simple process of mapping
 regions in a vector space to specific centroids. Each region is called a cluster
 and each cluster's center is a centroid, also known as a codeword. The
 collection of codewords for each speaker is the codebook for the speaker. These
-codebooks are then used to identify if a test speaker's mfcc is close to a speaker's
+codebooks are then used to identify if a test speaker's MFCC is close to a speaker's
 codebook to identify the speaker.
 
-First, to verify that the mfcc vectors for a speaker display various clusters that
+First, to verify that the MFCC vectors for a speaker display various clusters that
 represent different vocal features, we plotted the mfcc vectors in the 5th and 
 6th dimensions for speakers 1 and 2. In Figure 5, we noticed that even by only
-plotting 2 dimensions of the mfcc vector, both speaker 1 and speaker 2 had
-different clusters in the mfcc vector space. This confirms that the vector
+plotting 2 dimensions of the mfcc vector, both speaker 1 and speaker 2 exhibited
+different clusters in the MFCC vector space. This confirms that the vector
 quantization method would work because we would be able to identify different
 centroids for each cluster.
 
@@ -130,18 +130,27 @@ After creating a codebook for each speaker in the training set using the LBG
 algorithm, the next step is to identify the speakers in the test set. This is done
 by first finding the mfccs for the test speaker, then for each test speaker, 
 go through all the codebooks, and calculate the average distance between the test 
-speaker's mfccs and the codebook's centroids. The codebook that has the smallest
-average distance between the mfcc vectors and the codebook's centroids is the best 
-match. This is because the clusters would closely match the trained speaker's mfcc
+speaker's MFCCs and the codebook's centroids. The codebook that has the smallest
+average distance between the MFCC vectors and the codebook's centroids is the best 
+match. This is because the clusters would closely match the trained speaker's MFCC
 clusters, therefore, their features would match.
 
 ## Test Results
+During testing, we optimized the LBG parameters (centroid count and epsilon) to maximize accuracy
+in each test. While it doesn't stay true in some cases, we noticed a general trend where as the
+number of speakers increase, the amount of centroids and epsilon also increases. This may be because
+with more speakers, some speach features may be the same for a number of speakers, so we need more
+centroids and a higher epsilon to identify more of the subtle, smaller, and unique features in people's
+voices.
+
 ### **Test 7**
 #### **Non student speaker recordings of "zero"**
+Training Parameters: M = 16, e = 0.05
 Training Data Accuracy: 100%
 Testing Data Accuracy: 87.5%
 
 #### **Non student speaker with teammates' recordings of "zero"**
+Training Parameters: M = 16, e = 0.153
 Training Data Accuracy: 100%
 Testing Data Accuracy: 80%
 
@@ -160,12 +169,15 @@ specifically has trouble with identifying speaker 3 correctly.
 
 ### **Test 8**
 #### **Notch filter blocking 60 Hz applied to Test 7**
+Training Parameters: M = 16, e = 0.05
 Testing Data Accuracy: 75%
 
 #### **Notch filter blocking 200 Hz applied to Test 7**
+Training Parameters: M = 16, e = 0.05
 Testing Data Accuracy: 62.5%
 
 #### **Notch filter blocking 400 Hz applied to Test 7**
+Training Parameters: M = 16, e = 0.05
 Testing Data Accuracy: 75%
 
 To test the robustness of our model we added notch filters at 3 different places,
@@ -183,6 +195,7 @@ be identified accurately except for speaker 1.
 
 ### **Test 9**
 #### **Original Speakers + 10 random Students with speech "zero"**
+Training Parameters: M = 16, e = 0.05
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
@@ -197,14 +210,17 @@ the same speakers incorrect and had larger dataset to guess correctly.
 
 ### **Test 10a: Zero/Twelve system**
 #### **Train and test with zero**
+Training Parameters: M = 64, e = 0.07
 Training Data Accuracy: 100%
 Testing Data Accuracy: 94.44%
 
 #### **Train and test with twelve**
+Training Parameters: M = 64, e = 0.07
 Training Data Accuracy: 100%
 Testing Data Accuracy: 83.33%
 
 #### **Train and test with both zero and twelve**
+Training Parameters: M = 64, e = 1
 Training Data Accuracy: 100%
 Testing Data Accuracy: 88.88%
 
@@ -226,14 +242,17 @@ correctly in this test.
 
 ### **Test 10b: Five/Eleven system**
 #### **Train and test with five**
+Training Parameters: M = 16, e = 0.1
 Training Data Accuracy: 100%
 Testing Data Accuracy: 100%
 
 #### **Train and test with eleven**
+Training Parameters: M = 32, e = 0.1
 Training Data Accuracy: 100%
 Testing Data Accuracy: 91.34%
 
 #### **Train and test with both five and eleven**
+Training Parameters: M = 16, e = 0.1
 Training Data Accuracy: 100%
 Testing Data Accuracy: 93.48%
 
@@ -246,3 +265,15 @@ For the test with both "five" and "eleven", the difference in energy of the soun
 allowed the program to guess the correct word in each case. Most of the mistakes were
 made when guessing which speaker was saying "eleven". The additioni of the "eleven"
 dataset brought the accuracy down from the "five" test. 
+
+## Contributions
+
+Nathan Lai
+
+Anthony Tan-Andia
+- Completed Test 5
+- Wrote the LBG algorithm
+- Wrote the Train function
+- Completed Test 6
+- Wrote a Prediction Function
+- Completed Tests 7, 8 and helped with Test 9
