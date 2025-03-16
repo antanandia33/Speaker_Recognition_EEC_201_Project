@@ -32,7 +32,7 @@ people sounded very similar to each other while others sounded vastly different.
 As a human, picking up these vocal differences during the first pass is difficult.
 
 ## Speech Preprocessing
-MFCCs represent human hearing being more sensitive to lower frequencies, which allows
+MFCCs are a representation of human hearing being more sensitive to lower frequencies, which allows
 speech characteristics to be easier to recognize. These are represented in the mel-frequency
 scale that is linearly spaced below 1000 Hz and logarithmicly spaced above 1000 Hz. 
 The process for computing the MFCCs is shown in Figure A1. 
@@ -44,7 +44,7 @@ The process for computing the MFCCs is shown in Figure A1.
 The purpose of the Frame Blocking step is to divide the signal into smaller, overlapping frames
 that approximate the frequency spectrum shape of the signal. This is necessary because
 signal frequencies change over time, but are stationary in short time periods that we represent
-with frames. The overlapping frames is for analyzing these stationary frequency segments. 
+with frames. The overlapping frames are for analyzing these stationary frequency segments. 
 We chose a frame size of 256 samples for 20.48 milliseconds and 67% overlap for this project.
 
 The Windowing step is needed to reduce spectral leakage at the ends of each frame that comes
@@ -62,12 +62,19 @@ in Figure A2 along with the time domain waveform of the signals.
 
 In Mel-frequency wrapping, several triangular filters are applied to the STFT of the 
 signal to create filter banks that emphasize/attenuate certain frequencies and map linear frequency
-bins to the mel-frequency scale. The frequency response of the filter bank is shown in Figure A3.
-Figure A4 also shows how the filter banks affected the spectrogram of the signals' STFTs.
+bins to the mel-frequency scale. 20 filter banks were used in this case In Figure A3, the 
+frequency response of the filter banks show how the triangular filters are shorter concentrated 
+at the lower frequencies to represent human hearing being more sensitive to lower frequencies. 
+The filter banks are triangular and overlapping because it allows smooth response transitions for
+adjacent frequency bands similar to human hearing.
 
 |  ![Figure A3: Filter bank for Mel-frequency scale](./Report_Images/filter_bank.png) |
 |:--:| 
 | *Figure A3: Filter bank for Mel-frequency scale* |
+
+Figure A4 compares the spectrograms of the signals before and after applying the filter banks.
+The spectrogram results show the frequency bands being divided into 20 segments that get more precise
+and small as frequency decreases. This represents the mel-frequency scale from the 20 filter banks. 
 
 |  ![Figure A4: Signal spectrograms before and after frequency wrapping](./Report_Images/test3.png) |
 |:--:| 
@@ -75,7 +82,7 @@ Figure A4 also shows how the filter banks affected the spectrogram of the signal
 
 For the Cepstrum step, the MFCCs are calculated after the filter banks by applying
 Discrete Cosine Transform (DCT) to get a compressed representation of the filter banks.
-This converts the mel spectrum coefficients to time domains and results in the MFCCs. 
+This converts the mel spectrum coefficients to time domain and outputs the MFCCs. 
 Sinusoidal liftering was done after this to improve the speech recognition with noisy 
 signals by de-emphasizing higher MFCCs. 
 
@@ -239,6 +246,3 @@ For the test with both "five" and "eleven", the difference in energy of the soun
 allowed the program to guess the correct word in each case. Most of the mistakes were
 made when guessing which speaker was saying "eleven". The additioni of the "eleven"
 dataset brought the accuracy down from the "five" test. 
-
-## Conclusion
-
