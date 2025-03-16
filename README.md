@@ -35,11 +35,11 @@ As a human, picking up these vocal differences during the first pass is difficul
 MFCCs are a representation of human hearing being more sensitive to lower frequencies, which allows
 speech characteristics to be easier to recognize. These are represented in the mel-frequency
 scale that is linearly spaced below 1000 Hz and logarithmicly spaced above 1000 Hz. 
-The process for computing the MFCCs is shown in Figure A1. 
+The process for computing the MFCCs is shown in Figure 1. 
 
-|  ![Figure A1: MFCC Process Block Diagram](./Report_Images/Speech_Preprocessing.png) |
+|  ![Figure 1: MFCC Process Block Diagram](./Report_Images/Speech_Preprocessing.png) |
 |:--:| 
-| *Figure A1: MFCC Process Block Diagram* |
+| *Figure 1: MFCC Process Block Diagram* |
 
 The purpose of the Frame Blocking step is to divide the signal into smaller, overlapping frames
 that approximate the frequency spectrum shape of the signal. This is necessary because
@@ -54,31 +54,31 @@ at these frame edges.
 A STFT, which is an N-point Fast Fourier Transform (FFT), is done after windowing in order to 
 convert the signal to frequency domain for Mel-frequency wrapping. An N value of 512 was chosen
 in this case. The spectrograms after the STFT in different cases of people saying "zero" are shown
-in Figure A2 along with the time domain waveform of the signals. 
+in Figure 2 along with the time domain waveform of the signals. 
 
-|  ![Figure A2: Spectrograms and Waveforms of the "zero" signals](./Report_Images/test2.png) |
+|  ![Figure 2: Spectrograms and Waveforms of the "zero" signals](./Report_Images/test2.png) |
 |:--:| 
-| *Figure A2: Spectrograms and Waveforms of the "zero" signals* |
+| *Figure 2: Spectrograms and Waveforms of the "zero" signals* |
 
 In Mel-frequency wrapping, several triangular filters are applied to the STFT of the 
 signal to create filter banks that emphasize/attenuate certain frequencies and map linear frequency
-bins to the mel-frequency scale. 20 filter banks were used in this case In Figure A3, the 
+bins to the mel-frequency scale. 20 filter banks were used in this case In Figure 3, the 
 frequency response of the filter banks show how the triangular filters are shorter concentrated 
 at the lower frequencies to represent human hearing being more sensitive to lower frequencies. 
 The filter banks are triangular and overlapping because it allows smooth response transitions for
 adjacent frequency bands similar to human hearing.
 
-|  ![Figure A3: Filter bank for Mel-frequency scale](./Report_Images/filter_bank.png) |
+|  ![Figure 3: Filter bank for Mel-frequency scale](./Report_Images/filter_bank.png) |
 |:--:| 
-| *Figure A3: Filter bank for Mel-frequency scale* |
+| *Figure 3: Filter bank for Mel-frequency scale* |
 
-Figure A4 compares the spectrograms of the signals before and after applying the filter banks.
+Figure 4 compares the spectrograms of the signals before and after applying the filter banks.
 The spectrogram results show the frequency bands being divided into 20 segments that get more precise
 and small as frequency decreases. This represents the mel-frequency scale from the 20 filter banks. 
 
-|  ![Figure A4: Signal spectrograms before and after frequency wrapping](./Report_Images/test3.png) |
+|  ![Figure 4: Signal spectrograms before and after frequency wrapping](./Report_Images/test3.png) |
 |:--:| 
-| *Figure A4: Signal spectrograms before and after frequency wrapping* |
+| *Figure 4: Signal spectrograms before and after frequency wrapping* |
 
 For the Cepstrum step, the MFCCs are calculated after the filter banks by applying
 Discrete Cosine Transform (DCT) to get a compressed representation of the filter banks.
@@ -98,33 +98,33 @@ codebook to identify the speaker.
 
 First, to verify that the mfcc vectors for a speaker display various clusters that
 represent different vocal features, we plotted the mfcc vectors in the 5th and 
-6th dimensions for speakers 1 and 2. In Figure B1, we noticed that even by only
+6th dimensions for speakers 1 and 2. In Figure 5, we noticed that even by only
 plotting 2 dimensions of the mfcc vector, both speaker 1 and speaker 2 had
 different clusters in the mfcc vector space. This confirms that the vector
 quantization method would work because we would be able to identify different
 centroids for each cluster.
 
-|  ![Figure B1: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav](./Report_Images/test5.png) |
+|  ![Figure 5: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav](./Report_Images/test5.png) |
 |:--:| 
-| *Figure B1: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav* |
+| *Figure 5: mfcc vector space in the 5th and 6th mfcc dimensions for s1.wav and s2.wav* |
 
 The next step in vector quantization would be to identify the centroids for 
 each cluster. This was done by applying the Linde, Buzo, and Gray (LBG)
 algorithm to the mfcc vectors. This algorithm is a recursive algorithm that teaches
 the clustering of a set of L training vectors into a set of M codewords. The
-algorithm is shown in Figure B2. The two hyperparameters that we can tune are 
+algorithm is shown in Figure 6. The two hyperparameters that we can tune are 
 M - the number of codewords, and epsilon e - the splitting parameter. After, 
 running the LBG algorithm on the same speakers - speaker 1 and speaker 2 with 16 
-centroids, in Figure B3 we can see that the algorithm successfully plots 16 
+centroids, in Figure 7 we can see that the algorithm successfully plots 16 
 centroids for each speaker that correctly maps out the speaker's clusters.
 
 |  ![LBG Algorithm](./Report_Images/LBG.png) |
 |:--:| 
-| *Figure B2: LBG Algorithm* |
+| *Figure 6: LBG Algorithm* |
 
 |  ![Centroids](./Report_Images/centroids.png) |
 |:--:| 
-| *Figure B3: Centroids on s1.wav and s2.wav vector space in the 5th and 6th mfcc dimenstions* |
+| *Figure 7: Centroids on s1.wav and s2.wav vector space in the 5th and 6th mfcc dimenstions* |
 
 After creating a codebook for each speaker in the training set using the LBG
 algorithm, the next step is to identify the speakers in the test set. This is done
