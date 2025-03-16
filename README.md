@@ -269,6 +269,11 @@ dataset brought the accuracy down from the "five" test.
 ## Contributions
 
 Nathan Lai
+- Completed Tests 1, 2, 3, and 4
+- Wrote mfcc function
+- Wrote melfb function
+- Helped with Test 9
+- Completed Test 10a and 10b
 
 Anthony Tan-Andia
 - Completed Test 5
