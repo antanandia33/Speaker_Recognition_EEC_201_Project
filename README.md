@@ -54,7 +54,9 @@ at these frame edges.
 A STFT, which is an N-point Fast Fourier Transform (FFT), is done after windowing in order to 
 convert the signal to frequency domain for Mel-frequency wrapping. An N value of 512 was chosen
 in this case. The spectrograms after the STFT in different cases of people saying "zero" are shown
-in Figure 2 along with the time domain waveform of the signals. 
+in Figure 2 along with the time domain waveform of the signals. The spectrograms show the power
+of the frequencies present in each speaker's voice over time. When the speaker talks, most of 
+the power is concentrated below 1000 Hz, which is the frequency range of typical human speech. 
 
 |  ![Figure 2: Spectrograms and Waveforms of the "zero" signals](./Report_Images/test2.png) |
 |:--:| 
