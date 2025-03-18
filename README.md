@@ -8,6 +8,9 @@ Team Job Hunters: Nathan Lai and Anthony Tan-Andia
 3) Click Runtime>Disconnect and delete runtime>Yes
 4) Click Runtime>Run all to run the program
 
+## Video Link
+https://youtu.be/qsH19308JqA
+
 ## Abstract
 The goal of this project is to create a signal processing model that successfully
 identifies speakers using the mel-frequency cepstrum coefficients and vector
@@ -23,9 +26,6 @@ audio files of different people saying the word "zero". In training, we achieved
 an accuracy of 100% and in testing, we achieved an accuracy of 87.5%. We then went
 on to test other features, such as the model's robustness to missing frequencies,
 how it handled more speakers, and how it handled more words. 
-
-## Video Link
-https://youtu.be/qsH19308JqA
 
 ## Human Benchmark
 In our human benchmark, we achieved an accuracy of 37.5%. The speakers that we 
