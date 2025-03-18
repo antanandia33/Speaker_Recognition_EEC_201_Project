@@ -24,6 +24,9 @@ an accuracy of 100% and in testing, we achieved an accuracy of 87.5%. We then we
 on to test other features, such as the model's robustness to missing frequencies,
 how it handled more speakers, and how it handled more words. 
 
+## Video Link
+https://youtu.be/qsH19308JqA
+
 ## Human Benchmark
 In our human benchmark, we achieved an accuracy of 37.5%. The speakers that we 
 got correct in our initial training set were speakers 2, 3, and 5. Our accuracy
